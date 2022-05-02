@@ -92,7 +92,7 @@ export class Tab3Page implements OnDestroy{
   apiLeyendaEgresoSemanal:any;
   apiEgresoSemanal:any;
 
-  customYearValues = [2020, 2019, 2018, 2017, 2016, 2015];
+  customYearValues = [2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015];
   customMonthValues = [
     "Enero",
     "Febrero",
@@ -177,7 +177,7 @@ async var_ingresodelMes(date) {
     "content-type": "application/json",
     "x-token": token,
   };
-   this.http.get<IngresoMensualInterface>(my_url, { headers: headers }).subscribe((data) => {
+  this.http.get<IngresoMensualInterface>(my_url, { headers: headers }).subscribe((data) => {
     let apiDelImporteElegido = data.resultado.map(data => data.importe)
     let apiDelLeyendaElegida = data.resultado.map(data => data.leyenda)
     this.apiSeleccionMensualImporte = apiDelImporteElegido;
@@ -191,7 +191,7 @@ async var_ingresodelMes(date) {
 }
 
 var_semanal(event) {
-  const my_url = URL_SERVIDOR + "/gastos-corrientes-semanal/2019/35";
+  const my_url = URL_SERVIDOR + "/gastos-corrientes-semanal/2020/25";
   var token = URL_TOKEN;
   const headers = {
     "content-type": "application/json",
@@ -218,7 +218,7 @@ async var_EgrsosdelMesCapital(date) {
     "content-type": "application/json",
     "x-token": token,
   };
-   this.http.get<IngresoMensualInterface>(my_url, { headers: headers }).subscribe((data) => {
+  this.http.get<IngresoMensualInterface>(my_url, { headers: headers }).subscribe((data) => {
     let apiDelImporteElegido = data.resultado.map(data => data.importe)
     let apiDelLeyendaElegida = data.resultado.map(data => data.leyenda)
     this.apiSeleccionMensualImporte = apiDelImporteElegido;
@@ -290,7 +290,7 @@ createBarChartSemanal() {
   });
 }
 
-createBarChartEgresoSemanal() {
+ createBarChartEgresoSemanal() {
   const ctx = this.BarChartEgresoSemanal.nativeElement;
   ctx.height = 400;
   this.BarEgresoSemanal = new Chart(ctx, {

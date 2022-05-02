@@ -172,7 +172,7 @@ export class Tab2Page implements OnDestroy {
   
   
   async var_semanal(event) {
-    const my_url = URL_SERVIDOR + "/recaudacion-semanal/2019/35";
+    const my_url = URL_SERVIDOR + "/recaudacion-semanal/2020/25";
     var token = URL_TOKEN;
     const headers = {
       "content-type": "application/json",
@@ -202,7 +202,7 @@ export class Tab2Page implements OnDestroy {
   }
 
  async var_ingreso_mensual() {
-    const my_url = URL_SERVIDOR + "/recaudacion-mensual/2019";
+    const my_url = URL_SERVIDOR + "/recaudacion-mensual/2020";
     var token = URL_TOKEN;
     const headers = {
       "content-type": "application/json",

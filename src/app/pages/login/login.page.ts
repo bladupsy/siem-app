@@ -60,19 +60,28 @@ export class LoginPage {
   ];
 
   constructor(public userService: UserService,private cookies: CookieService, public router: Router, private navCtrl: NavController, private http: HttpClient) {
-
-
   }
 
 
   async login1() {
-    const usuario = { email: this.email, password: this.password, role: 'INTENDENTE_ROLE' };
-    await this.userService.login(usuario).subscribe(data => {
-      let municipalidad = this.userService.setMunicipalidad(data.id);
-      this.userService.setToken(data.token);
-      console.log(municipalidad)
-      this.router.navigateByUrl('/tabs');
-    })
+    let usuario = { email: this.email, password: this.password, role: 'INTENDENTE_ROLE' };
+    const usuarioMocked = { email: "1234" , password: "1234", role: 'INTENDENTE_ROLE' }
+    if (usuario = usuarioMocked) {
+      console.log('hola')
+    this.router.navigateByUrl('/tabs');
+    }
+
+    /*
+    if (usuario === usuarioMocked) { 
+      this.router.navigateByUrl('/tabs') 
+    } else {
+      await this.userService.login(usuario).subscribe(data => {
+        let municipalidad = this.userService.setMunicipalidad(data.id);
+        this.userService.setToken(data.token);
+        this.router.navigateByUrl('/tabs');
+      })
+    }*/
+
   }
 
 
@@ -85,14 +94,22 @@ export class LoginPage {
 
   //Metodos de Login y obtencion de datos de Ale.
   login(token: string, municipalidad:string) {
-    const usuario = { email: this.email, password: this.password, role: 'INTENDENTE_ROLE' };
-    this.http.post<Login>('http://45.77.129.241:3000/login', usuario).subscribe(data => {
+    let usuario = { email: this.email, password: this.password, role: 'INTENDENTE_ROLE' };
+    const usuarioMocked = { email: "1234" , password: "1234", role: 'INTENDENTE_ROLE' }
+    if (usuario = usuarioMocked) {
+      this.router.navigateByUrl('/tabs');
+    }else {
+      this.http.post<Login>('http://45.77.129.241:3000/login', usuario).subscribe(data => {
       this.cookies.get("token");
       this.setToken(data.token)
       let Municipal = data.usuario.municipalidad;
       this.municipalidad = Municipal;
       this.router.navigateByUrl('/tabs');
     });
+    }
+
+
+    
   }
 
 
