@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Storage } from '@ionic/storage';
 import { UserService } from "../../api/user.service";
 import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
-import { async } from '@angular/core/testing';
-import { URL_TOKEN } from 'src/app/config/config'
-import { URL_SERVIDOR } from 'src/app/config/config'
 import { HttpClient } from '@angular/common/http';
-import { CookieService } from 'ngx-cookie-service';
+import { Storage } from '@ionic/storage';
 import { Login } from 'src/app/interfaces/resultados';
 @Component({
   selector: 'app-login',
@@ -19,8 +14,6 @@ export class LoginPage {
   email: string;
   password: string;
   municipalidad: string;
-
-
   slideOpts = {
     effect: 'fade',
     allowSlidePrev: true,
@@ -28,8 +21,7 @@ export class LoginPage {
     direction: 'horizontal',
     autoplay: true,
     speed: 1000
-    
-   };
+  };
 
   slides: { img: string, titulo: string, desc: string }[] = [
     {
@@ -59,62 +51,18 @@ export class LoginPage {
     }
   ];
 
-  constructor(public userService: UserService,private cookies: CookieService, public router: Router, private navCtrl: NavController, private http: HttpClient) {
+  constructor(public userService: UserService, public router: Router, private http: HttpClient, private storage: Storage) {
   }
 
-
-  async login1() {
+  login() {
     let usuario = { email: this.email, password: this.password, role: 'INTENDENTE_ROLE' };
-    const usuarioMocked = { email: "1234" , password: "1234", role: 'INTENDENTE_ROLE' }
-    if (usuario = usuarioMocked) {
-      console.log('hola')
-    this.router.navigateByUrl('/tabs');
-    }
-
-    /*
-    if (usuario === usuarioMocked) { 
-      this.router.navigateByUrl('/tabs') 
-    } else {
-      await this.userService.login(usuario).subscribe(data => {
-        let municipalidad = this.userService.setMunicipalidad(data.id);
-        this.userService.setToken(data.token);
-        this.router.navigateByUrl('/tabs');
-      })
-    }*/
-
-  }
-
-
-  setToken(token: string) {
-    this.cookies.set("token", token);
-  }
-  getToken() {
-    return this.cookies.get("token");
-  }
-
-  //Metodos de Login y obtencion de datos de Ale.
-  login(token: string, municipalidad:string) {
-    let usuario = { email: this.email, password: this.password, role: 'INTENDENTE_ROLE' };
-    const usuarioMocked = { email: "1234" , password: "1234", role: 'INTENDENTE_ROLE' }
-    if (usuario = usuarioMocked) {
-      this.router.navigateByUrl('/tabs');
-    }else {
-      this.http.post<Login>('http://45.77.129.241:3000/login', usuario).subscribe(data => {
-      this.cookies.get("token");
-      this.setToken(data.token)
+      this.http.post<Login>('https://siem-back.herokuapp.com/login', usuario).subscribe(data => {
+      this.storage.set('token', data.token)
+      this.storage.get(data.token)
       let Municipal = data.usuario.municipalidad;
       this.municipalidad = Municipal;
       this.router.navigateByUrl('/tabs');
     });
-    }
-
-
-    
   }
 
-
-  onClick() {
-    this.navCtrl.navigateForward( '/login' );
-
-  }
 }
