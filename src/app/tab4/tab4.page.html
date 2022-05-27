@@ -1,0 +1,42 @@
+<app-header></app-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle
+        >Municipalidad de {{this.municipio}}
+      </ion-card-subtitle>
+      <ion-card-title>Hola {{this.name}}!</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-grid class="container-grid">
+        <ion-row>
+          <ion-col class="container-col"><b>Email:</b>  {{this.email}} </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="container-col">
+            <b>Token:</b>
+            
+              <ion-label
+                color="success"
+                [ngClass]="{ booleanColor: true, 'btn-boolean-success': booleanColor }"
+                *ngIf="booleanColor"
+                >{{this.token}}</ion-label
+              >
+              <ion-label
+                color="danger"
+                [ngClass]="{ booleanColor: false, 'btn-boolean-danger': !booleanColor }"
+                *ngIf="!booleanColor"
+                >{{this.token}}</ion-label
+              >
+          
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-button expand="block" (click)="presentAlertConfirm()"
+        >Cerrar sesion</ion-button
+      >
+    </ion-card-content>
+  </ion-card>
+</ion-content>

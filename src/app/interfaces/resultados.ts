@@ -82,3 +82,15 @@ export interface Usuario {
   municipalidad: string;
   __v: number;
 }
+
+export interface Sesion {
+  email?: string;
+  google?: string;
+  img?: string;
+  municipalidad?: string;
+  nombre?: string;
+  password?: string;
+  role?: string;
+  __v: number;
+  _id: string;
+}

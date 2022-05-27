@@ -14,7 +14,8 @@ import { CommonModule } from '@angular/common';
     IonicModule
   ],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    
   ]
 })
 export class ComponentsModule { }

@@ -62,6 +62,7 @@ export class LoginPage {
       let Municipal = data.usuario.municipalidad;
       this.municipalidad = Municipal;
       this.router.navigateByUrl('/tabs');
+      this.storage.set('user', data.usuario)
     });
   }
 

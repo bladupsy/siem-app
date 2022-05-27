@@ -5,7 +5,8 @@ import { URL_SERVIDOR } from 'src/app/config/config'
 import { OtrasJurisdicciones  } from 'src/app/interfaces/resultados'
 import { Chart } from 'chart.js';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AlertController } from '@ionic/angular';
+import { ActionSheetController, AlertController, IonRouterOutlet, ModalController } from '@ionic/angular';
+import { ModalPage } from '../pages/modal/modal.page';
 
 @Component({
   selector: 'app-tab1',
@@ -15,7 +16,7 @@ import { AlertController } from '@ionic/angular';
 export class Tab1Page implements OnDestroy {
   @ViewChild('BarsChartOtrasJurisdicciones', {static: false}) BarsChartOtrasJurisdicciones;
   BarsOtrasJurisdicciones: any;
-
+  modal: HTMLElement;
   customYearValues = [2020, 2016, 2008, 2004, 2000, 1996];
   customDayShortNames = ['Domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
   customPickerOptions: any;
@@ -31,7 +32,9 @@ export class Tab1Page implements OnDestroy {
     this.var_ingreso_otrasJurisdicciones(event);
   }
 
-  constructor(public alertController: AlertController,public userService: UserService,private http: HttpClient ) {
+  constructor(public alertController: AlertController,public userService: UserService,private http: HttpClient , public routerOutlet: IonRouterOutlet,
+    private actionSheetCtrl: ActionSheetController, public modalController: ModalController
+) {
     this.customPickerOptions = {
       buttons: [{
         text: 'Save',
@@ -91,7 +94,7 @@ export class Tab1Page implements OnDestroy {
     this.BarsOtrasJurisdicciones = new Chart(ctx, {
     type: 'doughnut',
     data: {
-      // labels:this.apiLeyendaMunicipalOtras,
+      labels: this.apiLeyendaMunicipalOtras,
       datasets: [
         {
           label: '# Miles de pesos',
@@ -119,6 +122,14 @@ export class Tab1Page implements OnDestroy {
     this.userService.getLogos().subscribe(response => {
       this.logos = response;
     });
+  }
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: ModalPage,
+      cssClass: 'my-custom-class'
+    });
+    return await modal.present();
   }
 
 }

@@ -10,24 +10,19 @@
             refreshingText="Refrescando resultados...">
           </ion-refresher-content>
         </ion-refresher>
-
-        
     <ion-card mode="ios" color="secondary">
         <ion-card-header *ngFor="let logo of logos">
             <img src={{logo.img}} />
             <ion-card-title class="titulo">COPARTICIPACIÓN PROVINCIAL Y OTROS INGRESOS</ion-card-title>
         </ion-card-header>
     </ion-card>
-
     <ion-card mode="ios" class="tarjetadeotras">
         <ion-card-header>
-           <h5 class="titulo-cards">Ingreso de Otras Jurisdiciones</h5> 
+        <h5 class="titulo-cards">Ingreso de Otras Jurisdiciones</h5> 
         </ion-card-header>
         <ion-card-content >
             <canvas #BarsChartOtrasJurisdicciones style="position: relative; height:400px; width:40vw"></canvas>
         </ion-card-content>
     </ion-card>
-
-
-
+    </ion-content>
 </ion-content>

@@ -13,7 +13,7 @@ import { AppComponent } from './app.component';
 import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ],
   entryComponents: [],
   imports: [
     BrowserModule,
