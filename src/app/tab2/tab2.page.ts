@@ -89,6 +89,34 @@ export class Tab2Page implements OnDestroy {
     "jueves",
     "viernes",
   ];
+
+  CustomBackgroundColor = [
+    'rgba(255, 99, 133, 0.3)',
+  'rgba(54, 161, 253, 0.3)',
+  'rgba(126, 8, 125, 0.3)',
+  'rgba(252, 79, 48, 0.3)',
+  'rgba(5, 140, 103, 0.3)',
+  'rgba(114, 182, 70, 0.8)',
+  'rgba(105, 79, 187, 0.8)',
+  'rgba(26, 41, 233, 0.8)',
+  'rgba(0, 34, 109, 0.8)',
+  'rgba(255, 34, 109, 0.8)',
+  'rgba(255, 148, 109, 0.8)',
+  'rgba(255, 113, 7, 0.8)',
+  'rgba(78, 113, 7, 0.8)',
+  'rgba(78, 113, 198, 0.8)',
+  'rgba(214, 61, 119, 0.5)',
+  'rgba(113, 226, 20, 0.5)',
+  'rgba(48, 47, 125, 0.5)',
+  'rgba(0, 137, 255, 0.5)',
+  'rgba(0, 0, 60, 0.5)',
+  'rgba(196, 255, 160, 0.5)',
+  'rgba(255, 108, 200, 0.5)',
+  'rgba(126, 8, 125, 0.5)'
+  ]
+  CustomHoverBackgroundColor = ['#ff6385', '#36a1eb', '#fc4f30', '#058c6b', '#4a0352','#262424']
+
+
   customPickerOptions: any;
   DataResultado: Resultado;
   apiLeyendaSemanal: any;
@@ -289,15 +317,8 @@ createBarChartSeleccionDiario() {
         {
           label: "# Miles de pesos",
           data: this.apiImporteElegidadiaria,
-          backgroundColor: [
-            'rgba(255, 99, 133, 0.3)',
-            'rgba(54, 161, 235, 0.3)',
-            'rgba(252, 79, 48, 0.3)',
-            'rgba(5, 140, 107, 0.3)',
-            'rgba(74, 3, 82, 0.3)',
-            'rgba(38, 36, 36, 0.3)'
-          ],
-          hoverBackgroundColor: ['#ff6385', '#36a1eb', '#fc4f30', '#058c6b', '#4a0352','#262424'],
+          backgroundColor: this.CustomBackgroundColor,
+          hoverBackgroundColor: this.CustomHoverBackgroundColor,
         },
       ],
     },
@@ -342,15 +363,8 @@ createBarChartSeleccionDiario() {
           {
             label: "# Miles de pesos",
             data: this.apiSeleccionMensualImporte,
-            backgroundColor: [
-              'rgba(255, 99, 133, 0.3)',
-              'rgba(54, 161, 235, 0.3)',
-              'rgba(252, 79, 48, 0.3)',
-              'rgba(5, 140, 107, 0.3)',
-              'rgba(74, 3, 82, 0.3)',
-              'rgba(38, 36, 36, 0.3)'
-            ],
-            hoverBackgroundColor: ['#ff6385', '#36a1eb', '#fc4f30', '#058c6b', '#4a0352','#262424'],
+            backgroundColor: this.CustomBackgroundColor,
+            hoverBackgroundColor: this.CustomHoverBackgroundColor,
           },
         ],
       },
@@ -372,15 +386,8 @@ createBarChartSeleccionDiario() {
           {
             label: this.apiLeyendaSemanal,
             data: this.apiSemanal,
-            backgroundColor: [
-              'rgba(255, 99, 133, 0.3)',
-              'rgba(54, 161, 235, 0.3)',
-              'rgba(252, 79, 48, 0.3)',
-              'rgba(5, 140, 107, 0.3)',
-              'rgba(74, 3, 82, 0.3)',
-              'rgba(38, 36, 36, 0.3)'
-            ],
-            borderColor: ['#ff6385', '#36a1eb', '#fc4f30', '#058c6b', '#4a0352','#262424'],
+            backgroundColor: this.CustomBackgroundColor,
+            hoverBackgroundColor: this.CustomHoverBackgroundColor,
             borderWidth: 1,
           },
         ],
@@ -401,7 +408,7 @@ createBarChartSeleccionDiario() {
 
   createJurisdiccionMunicipal() {
     const ctx = this.BarChartMunicipales.nativeElement;
-    ctx.height = 400;
+    ctx.height = 120;
     this.BarsMunicipales = new Chart(ctx, {
       type: "doughnut",
       data: {
@@ -410,31 +417,8 @@ createBarChartSeleccionDiario() {
           {
             // label: "# Miles de pesos",
             data: this.apiIngresoMunicipal,
-            backgroundColor: [
-              'rgba(255, 99, 133, 0.3)',
-            'rgba(54, 161, 253, 0.3)',
-            'rgba(126, 8, 125, 0.3)',
-            'rgba(252, 79, 48, 0.3)',
-            'rgba(5, 140, 103, 0.3)',
-            'rgba(114, 182, 70, 0.8)',
-            'rgba(105, 79, 187, 0.8)',
-            'rgba(26, 41, 233, 0.8)',
-            'rgba(0, 34, 109, 0.8)',
-            'rgba(255, 34, 109, 0.8)',
-            'rgba(255, 148, 109, 0.8)',
-            'rgba(255, 113, 7, 0.8)',
-            'rgba(78, 113, 7, 0.8)',
-            'rgba(78, 113, 198, 0.8)',
-            'rgba(214, 61, 119, 0.5)',
-            'rgba(113, 226, 20, 0.5)',
-            'rgba(48, 47, 125, 0.5)',
-            'rgba(0, 137, 255, 0.5)',
-            'rgba(0, 0, 60, 0.5)',
-            'rgba(196, 255, 160, 0.5)',
-            'rgba(255, 108, 200, 0.5)',
-            'rgba(126, 8, 125, 0.5)'
-            ],
-            hoverBackgroundColor: ['#ff6385', '#36a1eb', '#fc4f30', '#058c6b', '#4a0352','#262424'],
+            backgroundColor: this.CustomBackgroundColor,
+            hoverBackgroundColor: this.CustomHoverBackgroundColor,
           },
         ],
       },

@@ -32,7 +32,7 @@ export class ModalPage implements OnInit {
     
     await actionSheet.present();
 
-    const { role } = await actionSheet.onDidDismiss();
+    const {role} = await actionSheet.onDidDismiss();
     
     if (role === 'destructive') {
       return true;

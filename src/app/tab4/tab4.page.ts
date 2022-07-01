@@ -30,7 +30,6 @@ export class Tab4Page implements OnInit {
         this.booleanColor = true
         this.token = 'valido'
       }
-     
     });
     if(this.users == undefined){
       this.booleanColor = false
